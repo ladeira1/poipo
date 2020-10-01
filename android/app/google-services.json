@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "65972482774",
+    "firebase_url": "https://poipo-cae62.firebaseio.com",
+    "project_id": "poipo-cae62",
+    "storage_bucket": "poipo-cae62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65972482774:android:7a1298b84ee78d1be64f77",
+        "android_client_info": {
+          "package_name": "com.poipo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65972482774-qt6vtpbj1p2o1rl5ee02a42pbu7v1k1g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqoR63T6X37QPMW1NfcldodunfMyM0j1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65972482774-qt6vtpbj1p2o1rl5ee02a42pbu7v1k1g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
