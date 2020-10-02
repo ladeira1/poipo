@@ -24,17 +24,23 @@ const AppRoutes = () => {
       activeTintColor: colors.secondaryPurple,
     }} >
 
-      <Tab.Screen name = 'Home' component = {HomeStackScreen} 
+      <Tab.Screen 
+      name = 'Home' 
+      component = {HomeStackScreen} 
       options = {{tabBarIcon: ({color, size}) => {
         return <Feather name = 'home' color = {color} size = {size} />
       }}} />
 
-      <Tab.Screen name = 'Search' component = {Search}
+      <Tab.Screen 
+      name = 'Search' 
+      component = {Search}
       options = {{tabBarIcon: ({color, size}) => {
         return <Feather name = 'search' color = {color} size = {size} />
       }}} />
 
-      <Tab.Screen name = 'Profile' component = {Profile}
+      <Tab.Screen 
+      name = 'Profile' 
+      component = {Profile}
       options = {{tabBarIcon: ({color, size}) => {
         return <Feather name = 'user' color = {color} size = {size} />
       }}} />

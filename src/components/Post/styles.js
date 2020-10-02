@@ -9,7 +9,7 @@ export const Container = styled.View`
   box-shadow: 1px 1px 3px rgba(18, 18, 18, 0.2);
   elevation: 3;
 `;
-export const Header = styled.View`  
+export const Header = styled.TouchableOpacity`  
   width: 100%;
   flex-direction: row;
   align-items: center;

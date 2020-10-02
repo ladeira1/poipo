@@ -70,7 +70,7 @@ const DatabaseProvider = ({ children }) => {
     deleteStorageUser()
   }
 
-  //firebase- app
+  //firebase - app - home
   const postMessage = async (message) => {
     let avatarUrl
     try {
@@ -95,7 +95,7 @@ const DatabaseProvider = ({ children }) => {
       })
   }
 
-  const loadPosts = async (setPosts, setLoadingHome) => {
+  const loadPosts = (setPosts, setLoadingHome) => {
     firestore().collection('posts').orderBy('createdAt', 'desc')
       .onSnapshot((snapshot) => {
         const postList = []
@@ -109,6 +109,61 @@ const DatabaseProvider = ({ children }) => {
 
         setPosts(postList)
         setLoadingHome(false)
+      })
+  }
+
+  const handleLike = async (id, likes, userId) => {
+    const docId = `${userId}_${id}`
+    const doc = await firestore().collection('likes').doc(docId).get()
+    doc.exists? removeLike(id, likes, docId) : addLike(id, likes, userId, docId)
+  }
+
+  const removeLike = async (id, likes, docId) => {
+    await firestore().collection('posts').doc(id).update({
+      likes: likes - 1
+    })
+    await firestore().collection('likes').doc(docId).delete()
+  }
+
+  const addLike = async (id,likes, userId, docId) => {
+    await firestore().collection('posts').doc(id).update({
+      likes: likes + 1
+    })
+    await firestore().collection('likes').doc(docId).set({
+      postId: id,
+      userId: userId,
+    })
+  }
+
+  //firebase - app - userPosts
+  const loadUserPosts = (userId, setPosts, setLoadingUser) => {
+    return firestore().collection('posts').where('userId', '==', userId)
+      .orderBy('createdAt', 'desc').onSnapshot((snapshot) => {
+        const postList = []
+        snapshot.forEach((document) => {
+          postList.push({
+            id: document.id,
+            ...document.data(),
+          })
+        })
+
+        setPosts(postList)
+        setLoadingUser(false)
+      })
+  }
+
+  //firebase - app - search
+  const searchUser = (personName, setPossibleUsers) => {
+    firestore().collection('users').where('name', '>=', personName)
+      .where('name', '<=', `${personName}\uf8ff`).onSnapshot((snapshot) => {
+        const possibleUsers = []
+        snapshot.forEach((document) => {
+          possibleUsers.push({
+            id: document.id,
+            ...document.data()
+          })
+        })
+        setPossibleUsers(possibleUsers)
       })
   }
 
@@ -149,6 +204,9 @@ const DatabaseProvider = ({ children }) => {
       signOut,
       postMessage,
       loadPosts,
+      handleLike,
+      loadUserPosts,
+      searchUser,
     }} >
       {children}
     </DatabaseContext.Provider>

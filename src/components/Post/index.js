@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {
   Container,
   Header,
@@ -16,7 +16,14 @@ import {formatDistance} from 'date-fns'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from '../../../styles/colors'
 
-const Post = ({ data }) => {
+import {DatabaseContext} from '../../contexts/database'
+import {useNavigation} from '@react-navigation/native'
+
+
+const Post = ({ data, userId }) => {
+  const {handleLike} = useContext(DatabaseContext)
+  const navigation = useNavigation()
+
   const formatTime = () => {
     const date = new Date(data.createdAt.seconds * 1000)
     return formatDistance(new Date(), date)
@@ -25,18 +32,21 @@ const Post = ({ data }) => {
   return(
     <Container>
 
-      <Header>
+      <Header onPress = {() => navigation.navigate('UserPosts', {
+        title: data.author,
+        userId: data.userId
+      })} >
         <Avatar 
         source = {data.avatarUrl? {uri: data.avatarUrl} : require('../../assets/avatar.png')} />
         <Name>{data?.author}</Name>
       </Header>
 
       <MessageView>
-        <Message numberOfLines = {4} >{data.content}</Message>
+        <Message>{data.content}</Message>
       </MessageView>
 
       <ActionsView>
-        <LikeButton>
+        <LikeButton onPress = {() => handleLike(data.id, data.likes, userId)} >
           <Icon name = {data.likes > 0? 'cards-heart': 'heart-plus-outline'} 
           size = {20} 
           color = {colors.red} />

@@ -11,18 +11,30 @@ const Stack = createStackNavigator()
 const HomeRoutes = () => {
   return(
     <Stack.Navigator>
-      <Stack.Screen name = 'Home' component = {Home}
+      <Stack.Screen 
+      name = 'Home' 
+      component = {Home}
       options = {{
         headerShown: false
       }} />
-      <Stack.Screen name = 'New Post' component = {NewPost}
+      <Stack.Screen 
+      name = 'New Post' 
+      component = {NewPost}
       options = {{
         headerTintColor: colors.white,
         headerStyle: {
           backgroundColor: colors.primaryGray
         }
       }} />
-      <Stack.Screen name = 'UserPosts' component = {UserPosts} />
+      <Stack.Screen 
+      name = 'UserPosts' 
+      component = {UserPosts}
+      options = {{
+        headerTintColor: colors.white,
+        headerStyle: {
+          backgroundColor: colors.primaryGray
+        }
+      }} />
     </Stack.Navigator>
   )
 }
