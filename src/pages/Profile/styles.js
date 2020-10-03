@@ -7,7 +7,7 @@ export const Container = styled.View`
   background-color: ${colors.primaryGray};
 `;
 export const UploadAvatarButton = styled.TouchableOpacity`
-  margin-top: 20%;
+  margin-top: 10%;
   background-color: ${colors.primaryBlack};
   width: 165px;
   height: 165px;

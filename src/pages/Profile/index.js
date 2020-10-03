@@ -1,7 +1,8 @@
 import React, {useContext, useState} from 'react'
 import {
-  TouchableOpacity,
-  Alert
+  TouchableWithoutFeedback,
+  Alert,
+  Keyboard,
 } from 'react-native'
 import {
   Container,
@@ -14,24 +15,15 @@ import {
   ButtonText,
 } from './styles'
 import {DatabaseContext} from '../../contexts/database'
+import {useNavigation} from '@react-navigation/native'
 
 import Header from '../../components/Header'
 
 export default Profile = () => {
   const {user, signOut} = useContext(DatabaseContext)
+  const navigation = useNavigation()
+
   const [avatar, setAvatar] = useState(null)
-
-  const handleAvatarUpdate = () => {
-    alert('To do')
-  }
-  
-  const handleNameUpdate = () => {
-    alert('To do')
-  }
-
-  const handleUpdateConfirmation = () => {
-    alert('To do')
-  }
 
   const handleSignOut = () => {
     Alert.alert(
@@ -49,29 +41,28 @@ export default Profile = () => {
       ]
     )
   }
-
   return (
-    <Container>
-    <Header />
-      <UploadAvatarButton onPress = {handleAvatarUpdate} >
-        <UploadText>+</UploadText>
-        { avatar? (
-          <Avatar source = {{uri: avatar}} />
-        ) : (
-          <Avatar source = {require('../../assets/avatar.png')} />
-        )
-        }
-      </UploadAvatarButton>
-      <TouchableOpacity onPress = {handleNameUpdate}>
-        <Name numberOfLines = {1} >{user.name}</Name>
-      </TouchableOpacity>
-      <Email numberOfLines = {1} >{user.email}</Email>
-      <Button colored = {true} onPress = {handleUpdateConfirmation} >
-        <ButtonText>Update profile</ButtonText>
-      </Button>
-      <Button colored = {false} onPress = {handleSignOut} >
-        <ButtonText>Logout</ButtonText>
-      </Button>
-    </Container>
+    <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
+      <Container>
+        <Header />
+        <UploadAvatarButton onPress = {() => navigation.navigate('Update Profile')} >
+          <UploadText>+</UploadText>
+          { avatar? (
+            <Avatar source = {{uri: avatar}} />
+          ) : (
+            <Avatar source = {require('../../assets/avatar.png')} />
+          )
+          }
+        </UploadAvatarButton >
+          <Name>{user.name}</Name>
+        <Email numberOfLines = {1} >{user.email}</Email>
+        <Button colored = {true} onPress = {() => navigation.navigate('Update Profile')} >
+          <ButtonText>Edit profile</ButtonText>
+        </Button>
+        <Button colored = {false} onPress = {handleSignOut} >
+          <ButtonText>Logout</ButtonText>
+        </Button>
+      </Container>
+    </TouchableWithoutFeedback>
   )
 }

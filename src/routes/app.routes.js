@@ -1,16 +1,16 @@
 import React from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import HomeStackScreen from './home.routes'
-import Profile from '../pages/Profile'
+import ProfileStackScreen from './profile.routes'
 import Search from '../pages/Search'
 
 import colors from '../../styles/colors'
 import Feather from 'react-native-vector-icons/Feather'
+import Profile from '../pages/Profile'
 
 const Tab = createBottomTabNavigator()
 
 const AppRoutes = () => {
-
 
   return (
     <Tab.Navigator 
@@ -40,7 +40,7 @@ const AppRoutes = () => {
 
       <Tab.Screen 
       name = 'Profile' 
-      component = {Profile}
+      component = {ProfileStackScreen}
       options = {{tabBarIcon: ({color, size}) => {
         return <Feather name = 'user' color = {color} size = {size} />
       }}} />
