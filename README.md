@@ -1,5 +1,5 @@
 # Dependencies
-## Everything i needed to install
+## Everything I needed to install
 - React Native
 - styled-components
 - @react-navigation/native
