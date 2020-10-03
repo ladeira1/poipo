@@ -45,7 +45,7 @@ export const LikeButton = styled.TouchableOpacity`
   justify-content: flex-start;
 `;
 export const Like = styled.Text`
-  color: ${colors.red};
+  color: ${colors.primaryPurple};
   margin: 0 6px;
 `;
 export const TimeText = styled.Text`

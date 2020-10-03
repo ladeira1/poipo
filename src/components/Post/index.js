@@ -49,10 +49,10 @@ const Post = ({ data, userId }) => {
         <LikeButton onPress = {() => handleLike(data.id, data.likes, userId)} >
           <Icon name = {data.likes > 0? 'cards-heart': 'heart-plus-outline'} 
           size = {20} 
-          color = {colors.red} />
+          color = {colors.primaryPurple} />
           <Like>{data.likes > 0? data.likes : ''}</Like>
         </LikeButton>
-        <TimeText>{formatTime()}</TimeText>
+        <TimeText>{formatTime()} ago</TimeText>
       </ActionsView>
     </Container>
   )
