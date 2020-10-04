@@ -7,7 +7,18 @@ import colors from '../../styles/colors'
 
 const Stack = createStackNavigator()
 
-const ProfileStackScreen = () => {
+const ProfileStackScreen = ({navigation, route}) => {
+  if(route.state && route.state.index > 0) {
+    navigation.setOptions({
+      tabBarVisible: false
+    })
+  }
+  else {
+    navigation.setOptions({
+      tabBarVisible: true
+    })
+  }
+  
   return(
     <Stack.Navigator>
       <Stack.Screen 
