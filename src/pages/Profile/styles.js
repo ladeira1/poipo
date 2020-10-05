@@ -55,5 +55,30 @@ export const Button = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
   font-size: 20px;
   font-style: italic;
-  color: ${colors.primaryBlack};
+  color: ${props => props.color};
+`;
+export const ModalContainer = styled.View`
+  width: 100%;
+  height: 70%;
+  background-color: ${colors.primaryBlack};
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+`;
+export const ButtonReturn = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+`;
+export const Input = styled.TextInput`
+  width: 90%;
+  height: 50px;
+  background-color: ${colors.lightGray};
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
 `;

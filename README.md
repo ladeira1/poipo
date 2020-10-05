@@ -13,3 +13,4 @@
 - @react-native-community/async-storage
 - @react-native-vector-icons (npm)
 - date-fns
+- react-native-image-picker

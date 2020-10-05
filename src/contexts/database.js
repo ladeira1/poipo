@@ -167,6 +167,62 @@ const DatabaseProvider = ({ children }) => {
       })
   }
 
+  //firebase - app - profile
+  const uploadAvatarImage = async (source) => {
+    const uid = user?.uid
+    const storageRef = storage().ref('users').child(uid)
+    await storageRef.putFile(source)
+
+    updateAvatarPost(uid)
+  }
+
+  const updateAvatarPost = async (uid) => {
+    const storageRef = storage().ref('users').child(uid)
+    const url = await storageRef.getDownloadURL()
+      .then(async image => {
+        const userPosts = await firestore().collection('posts')
+          .where('userId', '==', uid).get()
+
+        userPosts.forEach(async document => {
+          await firestore().collection('posts').doc(document.id).update({
+            avatarUrl: image
+          })
+        })
+      })
+      .catch((err) => {
+        alert(err)
+      })
+  }
+
+  const loadAvatar = async () => {
+    return await storage().ref('users').child(user?.uid).getDownloadURL()
+  }
+
+  const updateUser = async (name) => {
+    const uid = user.uid
+    await firestore().collection('users').doc(uid).update({
+      name: name
+    })
+      .then(async () => {
+        const userPosts = await firestore().collection('posts')
+          .where('userId', '==', uid).get()
+        userPosts.forEach(async (document) => {
+          await firestore().collection('posts').doc(document.id).update({
+            author: name
+          })
+        })
+
+        let data = {
+          uid: user.uid,
+          name: name,
+          email: user.email,
+        }
+
+        setUser(data)
+        setStorageUser(data)
+      })
+  }
+
   //async storage
   const setStorageUser = async (data) => {
     await AsyncStorage.setItem('@user', JSON.stringify(data))
@@ -207,6 +263,9 @@ const DatabaseProvider = ({ children }) => {
       handleLike,
       loadUserPosts,
       searchUser,
+      updateUser,
+      uploadAvatarImage,
+      loadAvatar,
     }} >
       {children}
     </DatabaseContext.Provider>

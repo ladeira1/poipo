@@ -1,7 +1,7 @@
 import React from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import HomeStackScreen from './home.routes'
-import ProfileStackScreen from './profile.routes'
+import Profile from '../pages/Profile'
 import Search from '../pages/Search'
 
 import colors from '../../styles/colors'
@@ -48,7 +48,7 @@ const AppRoutes = () => {
 
       <Tab.Screen 
       name = 'Profile' 
-      component = {ProfileStackScreen}
+      component = {Profile}
       options = {{tabBarIcon: ({color, size}) => {
         return <Feather name = 'user' color = {color} size = {size} />
       }}} />
