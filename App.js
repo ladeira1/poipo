@@ -18,7 +18,7 @@ const App = () => {
     <NavigationContainer>
       <DatabaseProvider>
         <StatusBar 
-        backgroundColor = {colors.primaryGray}
+        backgroundColor = {colors.primaryBlack}
         barStyle = 'light-content'
         translucent = {false} />
         <Routes />

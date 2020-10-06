@@ -3,7 +3,7 @@ import colors from '../../../styles/colors'
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${colors.secondaryGray};
+  background-color: ${colors.primaryBlack};
 `;
 export const Input = styled.TextInput.attrs({
   placeholderTextColor: colors.primaryWhite

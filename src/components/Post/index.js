@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useRef} from 'react'
 import {
   Container,
   Header,
@@ -19,14 +19,24 @@ import colors from '../../../styles/colors'
 import {DatabaseContext} from '../../contexts/database'
 import {useNavigation} from '@react-navigation/native'
 
+import * as Animatable from 'react-native-animatable'
+const AnimatedLike = Animatable.createAnimatableComponent(Icon)
+
 
 const Post = ({ data, userId }) => {
   const {handleLike} = useContext(DatabaseContext)
   const navigation = useNavigation()
 
+  const likeRef = useRef(null)
+
   const formatTime = () => {
     const date = new Date(data.createdAt.seconds * 1000)
     return formatDistance(new Date(), date)
+  }
+
+  const handleLikePress = () => {
+    handleLike(data.id, data.likes, userId)
+    likeRef.current.rubberBand()
   }
 
   return(
@@ -46,10 +56,12 @@ const Post = ({ data, userId }) => {
       </MessageView>
 
       <ActionsView>
-        <LikeButton onPress = {() => handleLike(data.id, data.likes, userId)} >
-          <Icon name = {data.likes > 0? 'cards-heart': 'heart-plus-outline'} 
+        <LikeButton onPress = {handleLikePress} >
+          <AnimatedLike 
+          name = {data.likes > 0? 'cards-heart': 'heart-plus-outline'} 
           size = {20} 
-          color = {colors.primaryPurple} />
+          color = {colors.primaryPurple}
+          ref = {likeRef} />
           <Like>{data.likes > 0? data.likes : ''}</Like>
         </LikeButton>
         <TimeText>{formatTime()} ago</TimeText>

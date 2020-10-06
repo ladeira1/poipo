@@ -4,14 +4,21 @@ import colors from '../../../styles/colors'
 export const Container = styled.View`
   flex: 1;
   align-items: center;
-  background-color: ${colors.primaryGray};
+  background-color: ${colors.primaryBlack};
+`;
+export const DetailContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 100%;
 `;
 export const UploadAvatarButton = styled.TouchableOpacity`
-  margin-top: 10%;
   background-color: ${colors.primaryBlack};
-  width: 165px;
-  height: 165px;
-  border-radius: 90px;
+  width: 84px;
+  height: 84px;
+  border-radius: 42px;
   justify-content: center;
   align-items: center;
   z-index: 1;
@@ -24,24 +31,40 @@ export const UploadText = styled.Text`
   opacity: 0.4;
 `;
 export const Avatar = styled.Image`
-  width: 160px;
-  height: 160px;
-  border-radius: 80px;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
   opacity: 0.9;
 `;
+export const DetailTextContainer = styled.View`
+  justify-content: center;
+  flex: 1;
+  margin-left: 10px;
+  margin-right: 15px;
+`;
 export const Name = styled.Text`
-  margin: 20px 20px 10px 20px;
-  font-size: 28px;
-  color: ${colors.secondaryPurple};
+  font-size: 22px;
+  color: ${colors.white};
   font-weight: bold;
   opacity: 0.9;
 `;
 export const Email = styled.Text`
-  margin: 2px 20px;
   font-size: 20px;
-  color: ${colors.secondaryPurple};
+  color: ${colors.lightGray};
   font-style: italic;
   opacity: 0.9;
+`;
+export const DescriptionContainer = styled.View`
+  margin: 20px 0 80px 5px;
+  width: 95%;
+  min-height: 120px;
+`;
+export const Description = styled.Text`
+  border-left-width: ${props => props.text.length === 0? '0' : '3px'};
+  border-color: ${colors.secondaryPurple};
+  padding-left: 12px;
+  font-size: 16px;
+  color: ${colors.lightGray};
 `;
 export const Button = styled.TouchableOpacity`
   margin-top: 15px;
@@ -57,7 +80,7 @@ export const ButtonText = styled.Text`
   font-style: italic;
   color: ${props => props.color};
 `;
-export const ModalContainer = styled.View`
+export const ModalContainer = styled.KeyboardAvoidingView`
   width: 100%;
   height: 70%;
   background-color: ${colors.primaryBlack};
@@ -73,12 +96,18 @@ export const ButtonReturn = styled.TouchableOpacity`
   top: 15px;
   left: 15px;
 `;
+export const ModalText = styled.Text`
+  font-size: 17px;
+  color: ${colors.white};
+  align-self: flex-start;
+  margin-left: 20px;
+`;
 export const Input = styled.TextInput`
   width: 90%;
-  height: 50px;
+  height: ${props => props.height};
   background-color: ${colors.lightGray};
   border-radius: 10px;
-  padding: 10px;
+  margin: 10px;
   font-size: 20px;
-  text-align: center;
+  padding-left: 10px;
 `;

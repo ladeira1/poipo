@@ -4,7 +4,7 @@ import colors from '../../../styles/colors'
 export const Container = styled.View`
   flex: 1;
   padding-top: 15px;
-  background-color: ${colors.primaryGray};
+  background-color: ${colors.primaryBlack};
 `;
 export const InputArea = styled.View`
   flex-direction: row;

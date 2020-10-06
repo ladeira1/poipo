@@ -8,15 +8,20 @@ import {
 } from 'react-native'
 import {
   Container,
+  DetailContainer,
   UploadAvatarButton,
   UploadText,
   Avatar,
+  DetailTextContainer,
   Name,
   Email,
+  DescriptionContainer,
+  Description,
   Button,
   ButtonText,
   ModalContainer,
   ButtonReturn,
+  ModalText,
   Input
 } from './styles'
 import {DatabaseContext} from '../../contexts/database'
@@ -37,6 +42,7 @@ export default Profile = () => {
   } = useContext(DatabaseContext)
 
   const [name, setName] = useState(user?.name)
+  const [description, setDescription] = useState(user?.description)
   const [avatar, setAvatar] = useState(null)
   const [update, setUpdate] = useState(false)
 
@@ -64,7 +70,7 @@ export default Profile = () => {
       return
     }
 
-    updateUser(name)
+    updateUser(name, description)
     setUpdate(false)
   }
   
@@ -85,6 +91,11 @@ export default Profile = () => {
     )
   }
 
+  const handleReturn = () => {
+    setUpdate(false)
+    setDescription(user?.description)
+  }
+
   useEffect(() => {
     const loadImage = async () => {
       try {
@@ -95,7 +106,7 @@ export default Profile = () => {
         console.log(err)
       }
     }
-
+    console.log(description)
     loadImage()
   }, [])
 
@@ -103,17 +114,26 @@ export default Profile = () => {
     <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
       <Container>
         <Header />
-        <UploadAvatarButton onPress = {handleUpdateAvatar} >
-          <UploadText>+</UploadText>
-          { avatar? (
-            <Avatar source = {{uri: avatar}} />
-          ) : (
-            <Avatar source = {require('../../assets/avatar.png')} />
-          )
-          }
-        </UploadAvatarButton >
-        <Name>{user.name}</Name>
-        <Email numberOfLines = {1} >{user.email}</Email>
+        <DetailContainer>
+          <UploadAvatarButton onPress = {handleUpdateAvatar} >
+            <UploadText>+</UploadText>
+            { avatar? (
+              <Avatar source = {{uri: avatar}} />
+            ) : (
+              <Avatar source = {require('../../assets/avatar.png')} />
+            )
+            }
+          </UploadAvatarButton >
+          <DetailTextContainer>
+            <Name numberOfLines = {1} >{user?.name}</Name>
+            <Email numberOfLines = {1} >{user.email}</Email>
+          </DetailTextContainer>
+        </DetailContainer>
+        <DescriptionContainer>
+          <Description 
+          numberOfLines = {8} 
+          text = {user?.description} >{user?.description}</Description>
+        </DescriptionContainer>
         <Button colored = {true} onPress = {() => setUpdate(true)} >
           <ButtonText color = {colors.primaryBlack}>Edit profile</ButtonText>
         </Button>
@@ -126,18 +146,29 @@ export default Profile = () => {
         animationType = 'slide' 
         transparent = {true} >
           <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()} >
-            <ModalContainer>
-              <ButtonReturn onPress = {() => setUpdate(false)} >
+            <ModalContainer behavior = {Platform.OS === 'android'? '' : 'padding'} >
+              <ButtonReturn onPress = {handleReturn} >
                 <Icon 
                 name = 'arrow-left' 
                 size = {20} 
                 color = {colors.white} />
                 <ButtonText color = {colors.white} > Return</ButtonText>
               </ButtonReturn>
+              <ModalText>Name</ModalText>
               <Input 
               placeholder = {name}
               value = {name}
-              onChangeText = {(text) => setName(text)} />
+              onChangeText = {(text) => setName(text)}
+              height = '50px' />
+              <ModalText>Description</ModalText>
+              <Input 
+              placeholder = {description}
+              value = {description}
+              onChangeText = {(text) => setDescription(text)}
+              maxLength = {250}
+              multiline = {true}
+              textAlignVertical = 'top'
+              height = '150px' />
               <Button colored = {true} onPress = {handleUpdate} >
                 <ButtonText color = {colors.white}>Confirm</ButtonText>
               </Button>

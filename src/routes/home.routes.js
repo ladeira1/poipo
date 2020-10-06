@@ -33,7 +33,7 @@ const HomeRoutes = ({navigation, route}) => {
       options = {{
         headerTintColor: colors.white,
         headerStyle: {
-          backgroundColor: colors.primaryGray
+          backgroundColor: colors.primaryBlack
         }
       }} />
       <Stack.Screen 
@@ -42,7 +42,7 @@ const HomeRoutes = ({navigation, route}) => {
       options = {{
         headerTintColor: colors.white,
         headerStyle: {
-          backgroundColor: colors.primaryGray
+          backgroundColor: colors.primaryBlack
         }
       }} />
     </Stack.Navigator>

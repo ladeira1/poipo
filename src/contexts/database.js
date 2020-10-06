@@ -21,12 +21,14 @@ const DatabaseProvider = ({ children }) => {
         let uid = value.user.uid
 
         await firestore().collection('users').doc(uid).set({
-          name: name
+          name: name,
+          description: ''
         })
         .then(() => {
           let data = {
             uid: uid,
             name: name,
+            description: '',
             email: value.user.email
           }
 
@@ -52,6 +54,7 @@ const DatabaseProvider = ({ children }) => {
         let data = {
           uid: uid,
           name: currentUser.data().name,
+          description: currentUser.data().description,
           email: value.user.email,
         }
 
@@ -198,10 +201,11 @@ const DatabaseProvider = ({ children }) => {
     return await storage().ref('users').child(user?.uid).getDownloadURL()
   }
 
-  const updateUser = async (name) => {
+  const updateUser = async (name, description) => {
     const uid = user.uid
     await firestore().collection('users').doc(uid).update({
-      name: name
+      name: name,
+      description: description
     })
       .then(async () => {
         const userPosts = await firestore().collection('posts')
@@ -215,6 +219,7 @@ const DatabaseProvider = ({ children }) => {
         let data = {
           uid: user.uid,
           name: name,
+          description: description,
           email: user.email,
         }
 

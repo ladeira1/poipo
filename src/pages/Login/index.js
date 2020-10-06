@@ -18,6 +18,9 @@ import colors from '../../../styles/colors'
 
 import {DatabaseContext} from '../../contexts/database'
 
+import * as Animatable from 'react-native-animatable'
+const AnimatedTitle = Animatable.createAnimatableComponent(Title)
+
 
 export default Login = () => {
   const {loadingAuth, signUp, signIn} = useContext(DatabaseContext)
@@ -60,7 +63,7 @@ export default Login = () => {
   return (
     <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()} >
       <Container>
-        <Title>poipo</Title>
+        <AnimatedTitle animation = 'flipInY' >poipo</AnimatedTitle>
         { login === false &&
           <Input placeholder = 'Name' 
           value = {name}

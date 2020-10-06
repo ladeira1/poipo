@@ -26,7 +26,7 @@ const AppRoutes = () => {
       keyboardHidesTabBar: true,
       showLabel: false,
       style: {
-        backgroundColor: colors.primaryBlack,
+        backgroundColor: colors.secondaryBlack,
         borderTopWidth: 0,
       },
       activeTintColor: colors.secondaryPurple,

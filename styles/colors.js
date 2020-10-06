@@ -1,7 +1,8 @@
 export default {
-  primaryBlack: '#202225',
+  primaryBlack: '#101010',
+  secondaryBlack: '#020202',
   primaryGray: '#36393f',
-  secondaryGray: '#404349',
+  secondaryGray: '#363636',
   lightGray: '#c7c7c7',
   primaryPurple: '#6441A4',
   secondaryPurple: '#7859ce',
