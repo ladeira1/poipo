@@ -19,6 +19,8 @@ import {
   Button,
   ButtonText,
   ModalContainer,
+  SelectAvatarContainer,
+  ButtonSelectAvatar,
   ButtonReturn,
   ModalText,
   Input,
@@ -43,14 +45,14 @@ export default Profile = () => {
   const [name, setName] = useState(user?.name)
   const [description, setDescription] = useState(user?.description)
   const [avatar, setAvatar] = useState(null)
+  const [avatarOptions, setAvatarOptions] = useState(false)
   const [update, setUpdate] = useState(false)
 
-  const handleUpdateAvatar = () => {
+  const handleGaleryPhoto = () => {
     const options = {
       noData: true,
-      mediaType: 'photo'
+      mediaType: 'photo',
     }
-
     ImagePicker.launchImageLibrary(options, response => {
       if(response.didCancel) return
       if(response.error) {
@@ -61,6 +63,25 @@ export default Profile = () => {
       uploadAvatarImage(source)
       setAvatar(response.uri)
     })
+    setAvatarOptions(false) 
+  }
+
+  const handleCameraPhoto = () => {
+    const options = {
+      noData: true,
+      mediaType: 'photo',
+    }
+    ImagePicker.launchCamera(options, response => {
+      if(response.didCancel) return
+      if(response.error) {
+        alert(response.error)
+        return
+      }
+      const source = Platform.OS === 'android'? response.path : response.uri
+      uploadAvatarImage(source)
+      setAvatar(response.uri)
+    })
+    setAvatarOptions(false) 
   }
 
   const handleUpdate = () => {
@@ -113,7 +134,7 @@ export default Profile = () => {
       <Container>
         <Header />
         <DetailContainer>
-          <UploadAvatarButton onPress = {handleUpdateAvatar} >
+          <UploadAvatarButton onPress = {() => setAvatarOptions(true)} >
             { avatar? (
               <Avatar source = {{uri: avatar}} />
             ) : (
@@ -137,6 +158,27 @@ export default Profile = () => {
         <Button colored = {false} onPress = {handleSignOut} >
           <ButtonText color = {colors.primaryBlack}>Logout</ButtonText>
         </Button>
+
+        <Modal 
+        visible = {avatarOptions} 
+        animationType = 'slide' 
+        transparent = {true} >
+          <SelectAvatarContainer  behavior = {Platform.OS === 'android'? '' : 'padding'} >
+            <ButtonReturn onPress = {() => setAvatarOptions(false)} >
+              <Icon 
+              name = 'arrow-left' 
+              size = {20} 
+              color = {colors.white} />
+              <ButtonText color = {colors.white} > Return</ButtonText>
+            </ButtonReturn>
+            <ButtonSelectAvatar onPress = {handleGaleryPhoto}>
+              <ButtonText  color = {colors.white}>Galery</ButtonText>
+            </ButtonSelectAvatar>
+            <ButtonSelectAvatar onPress = {handleCameraPhoto}>
+              <ButtonText  color = {colors.white}>Camera</ButtonText>
+            </ButtonSelectAvatar>
+          </SelectAvatarContainer>
+        </Modal>
 
         <Modal 
         visible = {update} 

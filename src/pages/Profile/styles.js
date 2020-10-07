@@ -76,11 +76,30 @@ export const ButtonText = styled.Text`
 export const ModalContainer = styled.KeyboardAvoidingView`
   width: 100%;
   height: 85%;
-  background-color: ${colors.primaryBlack};
+  background-color: ${colors.secondaryBlack};
   justify-content: center;
   align-items: center;
   position: absolute;
   bottom: 0;
+`;
+export const SelectAvatarContainer = styled.KeyboardAvoidingView`
+  width: 100%;
+  height: 30%;
+  background-color: ${colors.secondaryBlack};
+  position: absolute;
+  bottom: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+`;
+export const ButtonSelectAvatar = styled.TouchableOpacity`
+  background-color: ${colors.secondaryPurple};
+  width: 150px;
+  height:60px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 `;
 export const ButtonReturn = styled.TouchableOpacity`
   flex-direction: row;
