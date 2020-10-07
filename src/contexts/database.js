@@ -115,6 +115,31 @@ const DatabaseProvider = ({ children }) => {
       })
   }
 
+  const deletePost = async (postId) => {
+    await firestore().collection('posts').doc(postId).delete()
+      .then(async () => {
+        await firestore().collection('likes').where('postId', '==', postId)
+          .onSnapshot(snapshot => {
+            snapshot.forEach(async document => {
+              await firestore().collection('likes').doc(document.id).delete()
+            })
+          })
+      })
+      .catch((err) => {
+        alert(err)
+      })
+  }
+
+  const updatePost = async (post, newMessage) => {
+    await firestore().collection('posts').doc(post.id).set({
+      ...post,
+      content: newMessage,
+    })
+      .catch((err) => {
+        alert(err)
+      })
+  }
+
   const handleLike = async (id, likes, userId) => {
     const docId = `${userId}_${id}`
     const doc = await firestore().collection('likes').doc(docId).get()
@@ -265,6 +290,8 @@ const DatabaseProvider = ({ children }) => {
       signOut,
       postMessage,
       loadPosts,
+      deletePost,
+      updatePost,
       handleLike,
       loadUserPosts,
       searchUser,

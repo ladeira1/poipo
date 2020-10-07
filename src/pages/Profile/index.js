@@ -10,7 +10,6 @@ import {
   Container,
   DetailContainer,
   UploadAvatarButton,
-  UploadText,
   Avatar,
   DetailTextContainer,
   Name,
@@ -22,7 +21,7 @@ import {
   ModalContainer,
   ButtonReturn,
   ModalText,
-  Input
+  Input,
 } from './styles'
 import {DatabaseContext} from '../../contexts/database'
 import Icon from 'react-native-vector-icons/Feather'
@@ -106,7 +105,6 @@ export default Profile = () => {
         console.log(err)
       }
     }
-    console.log(description)
     loadImage()
   }, [])
 
@@ -116,7 +114,6 @@ export default Profile = () => {
         <Header />
         <DetailContainer>
           <UploadAvatarButton onPress = {handleUpdateAvatar} >
-            <UploadText>+</UploadText>
             { avatar? (
               <Avatar source = {{uri: avatar}} />
             ) : (
@@ -159,7 +156,7 @@ export default Profile = () => {
               placeholder = {name}
               value = {name}
               onChangeText = {(text) => setName(text)}
-              height = '50px' />
+              height = '45px' />
               <ModalText>Description</ModalText>
               <Input 
               placeholder = {description}
@@ -168,7 +165,7 @@ export default Profile = () => {
               maxLength = {250}
               multiline = {true}
               textAlignVertical = 'top'
-              height = '150px' />
+              height = '60px' />
               <Button colored = {true} onPress = {handleUpdate} >
                 <ButtonText color = {colors.white}>Confirm</ButtonText>
               </Button>

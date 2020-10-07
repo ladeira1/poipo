@@ -23,13 +23,6 @@ export const UploadAvatarButton = styled.TouchableOpacity`
   align-items: center;
   z-index: 1;
 `;
-export const UploadText = styled.Text`
-  z-index: 2;
-  position: absolute;
-  font-size: 55px;
-  color: ${colors.primaryGray};
-  opacity: 0.4;
-`;
 export const Avatar = styled.Image`
   width: 80px;
   height: 80px;
@@ -82,7 +75,7 @@ export const ButtonText = styled.Text`
 `;
 export const ModalContainer = styled.KeyboardAvoidingView`
   width: 100%;
-  height: 70%;
+  height: 85%;
   background-color: ${colors.primaryBlack};
   justify-content: center;
   align-items: center;
@@ -97,7 +90,7 @@ export const ButtonReturn = styled.TouchableOpacity`
   left: 15px;
 `;
 export const ModalText = styled.Text`
-  font-size: 17px;
+  font-size: 15px;
   color: ${colors.white};
   align-self: flex-start;
   margin-left: 20px;
@@ -106,8 +99,8 @@ export const Input = styled.TextInput`
   width: 90%;
   height: ${props => props.height};
   background-color: ${colors.lightGray};
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 10px;
-  font-size: 20px;
+  font-size: 16px;
   padding-left: 10px;
 `;

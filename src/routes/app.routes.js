@@ -11,15 +11,6 @@ const Tab = createBottomTabNavigator()
 
 const AppRoutes = () => {
 
-  const getTabBarVisibility = (route) => {
-    const routeName = route.state? route.state.routes[route.state.index] : ''
-    console.log(routeName)
-    if(routeName === 'Update Profile') 
-      return false
-
-    return true
-  }
-
   return (
     <Tab.Navigator 
     tabBarOptions = {{

@@ -52,7 +52,7 @@ $ react-native run-ios
 - [React-Native-Animatable](https://github.com/oblador/react-native-animatable) - Animations
 
 ## Contributing
-  You can send how many Pull Requests you want and I'll gladly analyse and accept all of them!
+  You can send as many Pull Requests as you want and I'll gladly analyse and accept all of them!
 
 ## Contacts
   Email: victorladeirag@gmail.com

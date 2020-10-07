@@ -52,3 +52,55 @@ export const TimeText = styled.Text`
   margin-right: 6px;
   color: ${colors.lightGray};
 `;
+export const ModalContainer = styled.KeyboardAvoidingView`
+  width: 100%;
+  height: 60%;
+  background-color: ${colors.primaryBlack};
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  padding-top: 20%;
+`;
+export const ButtonReturn = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+`;
+export const ButtonText = styled.Text`
+  font-size: 20px;
+  font-style: italic;
+  color: ${colors.white};
+`;
+export const ButtonDelete = styled.TouchableOpacity`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+`;
+export const ModalText = styled.Text`
+  font-size: 15px;
+  color: ${colors.white};
+  align-self: flex-start;
+  margin-left: 20px;
+`;
+export const Input = styled.TextInput`
+  width: 90%;
+  height: 100px;
+  background-color: ${colors.lightGray};
+  border-radius: 5px;
+  margin: 10px;
+  font-size: 16px;
+  padding-left: 10px;
+  margin-bottom: 15%;
+`;
+export const Button = styled.TouchableOpacity`
+  margin-top: 15px;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.primaryPurple};
+  width: 80%;
+  height: 45px;
+  border-radius: 5px;
+`;
