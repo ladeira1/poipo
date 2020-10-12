@@ -55,6 +55,4 @@ $ react-native run-ios
   You can send as many Pull Requests as you want and I'll gladly analyse and accept all of them!
 
 ## Contacts
-  Email: victorladeirag@gmail.com
-
-  | <a href="https://github.com/ladeira1"><img src="https://cdn.iconscout.com/icon/free/png-512/github-153-675523.png" width="30"></a> | <a href="https://www.linkedin.com/in/victor-ladeira-26940a1b8/"><img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="30"></a> | <a href="mailto:victorladeirag@gmail.com"><img src="https://image.flaticon.com/icons/png/512/281/281769.png" width="30"></a> | 
+<a href="https://github.com/ladeira1"><img src="https://cdn.iconscout.com/icon/free/png-512/github-153-675523.png" width="30"></a> | <a href="https://www.linkedin.com/in/ladeira1/"><img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="30"></a> | <a href="mailto:victorladeirag@gmail.com"><img src="https://image.flaticon.com/icons/png/512/281/281769.png" width="30"></a>
